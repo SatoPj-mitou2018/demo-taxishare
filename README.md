@@ -24,3 +24,6 @@ python manage.py runserver
  
 ## Author
 Yuka Sato
+
+## Copyright
+Copyright © 2020 SatoPj-mitou2018, released under the MIT license.

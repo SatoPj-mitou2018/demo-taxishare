@@ -27,5 +27,4 @@ Yuka Sato
  
 # License
  "demo-taxishare" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
- And
- Copyright (c) 2018 Narito Takizawa
+ And Copyright (c) 2018 Narito Takizawa.

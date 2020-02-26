@@ -1,0 +1,57 @@
+{% extends "taxishare/base.html" %}
+{% block content %}
+  <div id="map"></div>
+  <script type="text/javascript">
+    function addMarkers(map){
+      var destination_marker = [];
+      var info_window = [];
+
+      {% for taxi in object_list %}
+      {% if not taxi.user.is_superuser %}
+
+      var point = new google.maps.LatLng({{taxi.user.desitination_latitude}},{{taxi.user.desitination_longitude}});
+      destination_marker[{{forloop.counter0}}] = new google.maps.Marker({
+        position: point,
+        map: map,
+        icon: {
+          url:"/static/taxishare/taxi_result/images/"+{{taxi.number}}+".png",
+          scaledSize: new google.maps.Size(30, 30),
+        },
+      });
+
+      info_window[{{forloop.counter0}}] = new google.maps.InfoWindow({
+        content: "<div class=\"sample\">{{taxi.user.email}}さん<br>配車番号 : {{taxi.number }}</div>"
+      });
+
+      destination_marker[{{forloop.counter0}}].addListener('click', function() { // マーカーをクリックしたとき
+        info_window[{{forloop.counter0}}].open(map, destination_marker[{{forloop.counter0}}]); // 吹き出しの表示
+      });
+      {% endif %}
+      {% endfor %}
+
+    }
+  </script>
+  <div class="form-group">
+    <table class="table">
+        <thead　class="thead-lignt">
+          <tr>
+            <th scope="col">ユーザ名</th>
+            <th scope="col">配車番号</th>
+          </tr>
+        </<thead>
+        <tbody>
+          {% for taxi in object_list %}
+          <tr>
+            <td>{{taxi.user.email}}</td>
+            <td>{{taxi.number}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+  </div>
+{% load static %}
+<script type="text/javascript"
+        src="{% static 'taxishare/taxi_result/taxi_result.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=initMap" async defer></script>
+<link rel="stylesheet" href="{% static 'taxishare/taxi_result/taxi_result.css' %}">
+{% endblock %}

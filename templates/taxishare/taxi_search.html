@@ -1,0 +1,45 @@
+{% extends "taxishare/base.html" %}
+{% block content %}
+
+<div id="map"></div>
+<script type="text/javascript">
+  function addMarkers(map){
+    var destination_marker = [];
+    var info_window = [];
+
+  {% for user in object_list %}
+  {% if not user.is_superuser %}
+
+    var point = new google.maps.LatLng({{user.desitination_latitude}},{{user.desitination_longitude}});
+    destination_marker[{{forloop.counter0}}] = new google.maps.Marker({
+      position: point,
+      map: map,
+      icon: {
+        url:"/static/taxishare/taxi_search/images/pink.png",
+        scaledSize: new google.maps.Size(30, 30),
+      },
+    });
+
+    info_window[{{forloop.counter0}}] = new google.maps.InfoWindow({
+      content: "<div class=\"sample\">{{user.email}}さん</div>"
+    });
+
+    destination_marker[{{forloop.counter0}}].addListener('click', function() { // マーカーをクリックしたとき
+      info_window[{{forloop.counter0}}].open(map, destination_marker[{{forloop.counter0}}]); // 吹き出しの表示
+    });
+
+  {% endif %}
+  {% endfor %}
+  }
+</script>
+<br>
+<form action="" method="POST">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-primary btn-lg" name='hybrid'>検索</button>
+</form>
+{% load static %}
+<script type="text/javascript"
+        src="{% static 'taxishare/taxi_search/taxi_search.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=initMap" async defer></script>
+<link rel="stylesheet" href="{% static 'taxishare/taxi_search/taxi_search.css' %}">
+{% endblock %}

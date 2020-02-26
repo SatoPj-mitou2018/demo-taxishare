@@ -1,0 +1,33 @@
+{% extends "taxishare/base.html" %}
+{% block content %}
+<div id="clock"></div>
+<div class="row">
+  <div id="map" class="col-xs-9"></div>
+  <div id="latlng_form" class="col-xs-3">
+    <form action="" method="POST">
+        {{ form.non_field_errors }}
+        {% for field in form %}
+        <div class="form-group">
+          <table class="table">
+              <tbody>
+                      <tr>
+                          <th><label for="{{ field.id_for_label }}">{{ field.label_tag }}</label></th>
+                          <td>{{ field }} {{ field.errors }}</td>
+                      </tr>
+              </tbody>
+          </table>
+        </div>
+        {% endfor %}
+        {% csrf_token %}
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary btn-lg">目的地登録</button>
+        </div>
+    </form>
+  </div>
+</div>
+{% load static %}
+<link rel="stylesheet" href="{% static 'taxishare/place_update/place_update.css' %}">
+<script type="text/javascript"
+        src="{% static 'taxishare/place_update/place_update.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=initMap" async defer></script>
+{% endblock %}

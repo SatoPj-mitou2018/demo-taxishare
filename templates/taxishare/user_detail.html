@@ -1,0 +1,31 @@
+{% extends "taxishare/base.html" %}
+{% block content %}
+<table class="table">
+    <tbody>
+        <tr>
+            <th>ユーザー名</th>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <th>姓</th>
+            <td>{{ user.last_name }}</td>
+        </tr>
+        <tr>
+            <th>名</th>
+            <td>{{ user.first_name }}</td>
+        </tr>
+        <tr>
+            <th>生年月日</th>
+            <td>{{ user.birth_date }}</td>
+        </tr>
+        <tr>
+            <th>性別</th>
+            {% if user.sex == -1 %}
+            <td>男性</td>
+            {% else %}
+            <td>女性</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

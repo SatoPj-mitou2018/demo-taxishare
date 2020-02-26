@@ -1,0 +1,20 @@
+{% extends "taxishare/base.html" %}
+{% block content %}
+<form action="" method="POST">
+    {{ form.non_field_errors }}
+    {% for field in form %}
+    <div class="form-group">
+      <table class="table">
+          <tbody>
+                  <tr>
+                      <th><label for="{{ field.id_for_label }}">{{ field.label_tag }}</label></th>
+                      <td>{{ field }} {{ field.errors }}</td>
+                  </tr>
+          </tbody>
+      </table>
+    </div>
+    {% endfor %}
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary btn-lg">送信</button>
+</form>
+{% endblock %}

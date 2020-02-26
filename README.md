@@ -19,3 +19,13 @@ python manage.py makemigrations taxishare
 python manage.py createsuperuser
 python manage.py runserver
 ```
+## Note
+ 配車処理できる利用者数は50人です。
+ 
+## Author
+* Yuka Sato
+ 
+# License
+ "demo-taxishare" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+ And
+ Copyright (c) 2018 Narito Takizawa

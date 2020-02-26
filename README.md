@@ -10,6 +10,8 @@
 * SciPy 1.4.1
 * Django-Pandas 0.6.1
 
+その他GoogleMapsAPI、Digital AnnealerのWebAPIが必要です。
+
 ## Usage
 ```
 python manage.py migrate

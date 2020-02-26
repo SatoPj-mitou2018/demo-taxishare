@@ -23,7 +23,7 @@ python manage.py runserver
  配車処理できる利用者数は50人です。
  
 ## Author
-* Yuka Sato
+Yuka Sato
  
 # License
  "demo-taxishare" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
